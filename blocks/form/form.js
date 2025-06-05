@@ -22,7 +22,7 @@ function constructPayload(form) {
 }
 
 async function submissionFailure(error, form) {
-  // alert(error); // TODO define error mechansim
+  alert(error); // TODO define error mechansim
   form.setAttribute('data-submitting', 'false');
   form.querySelector('button[type="submit"]').disabled = false;
 }
@@ -70,10 +70,7 @@ function setPlaceholder(element, fd) {
   }
 }
 const constraintsDef = Object.entries({ 
-  'email|text': [['Max', 'maxlength'], ['Min', 'minlength']], 
-  'number|range|date': ['Max', 'Min', 'Step'], 
-  file: ['Accept', 'Multiple'], 
-  fieldset: ['Max', 'Min']
+  'email|text': [['Max', 'maxlength'], ['Min', 'minlength']], 'number|range|date': ['Max', 'Min', 'Step'], file: ['Accept', 'Multiple'], fieldset: ['Max', 'Min'] 
 }).flatMap(([types, constraintDef]) => types.split('|').map((type) => [type, constraintDef.map((cd) => (Array.isArray(cd) ? cd : [cd, cd]))]));
 const constraintsObject = Object.fromEntries(constraintsDef);
 

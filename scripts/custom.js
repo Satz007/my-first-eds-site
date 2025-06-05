@@ -3,9 +3,20 @@ let anchorList = document.querySelectorAll(anchorSelector);
 anchorList.forEach(link => {
     link.onclick = function (e) {
         e.preventDefault();
-        let destination = document.querySelector(this.hash);
-        destination.scrollIntoView({
-            behavior: 'smooth'
-        });
+        console.log(this.hash)
+        scrollToAnchor(this.hash)
+        // let destination = document.querySelector(this.hash);
+        // destination.scrollIntoView({
+        //     behavior: 'smooth'
+        // });
     }
 });
+
+function scrollToAnchor(eleId) {
+    const target = document.getElementById(eleId);
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+    });
+}

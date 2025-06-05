@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
  });
  
  function scrollToAnchor(eleId) {
-     const target = document.getElementById(eleId.split('#')[1]);
-     const targetPosition = target.getBoundingClientRect().top - 200;
+     const target = document.getElementById(eleId.split('#')[1]).closest('section');
+     const targetPosition = target.getBoundingClientRect().top - 100;
      window.scrollTo({
          top: targetPosition,
          behavior: 'smooth'

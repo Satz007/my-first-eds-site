@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
         anchorList.forEach(link => {
             link.onclick = function (e) {
                 e.preventDefault();
-                console.log(this.hash)
                 scrollToAnchor(this.hash)
                 // let destination = document.querySelector(this.hash);
                 // destination.scrollIntoView({
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function scrollToAnchor(eleId) {
-    const target = document.getElementById(eleId);
+    const target = document.querySelector(eleId);
     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
     window.scrollTo({
         top: targetPosition,

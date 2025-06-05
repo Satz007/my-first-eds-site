@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // });
             }
         });
-   },500)
+   },1500)
 });
 
 function scrollToAnchor(eleId) {

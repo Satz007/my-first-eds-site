@@ -32,9 +32,7 @@ async function prepareRequest(form) {
   const headers = {
     'Content-Type': 'application/json',
   };
-  const body = JSON.stringify({
-    data: payload
-  });
+  const body = JSON.stringify({ data: payload });
   const url = form.dataset.action;
   return { headers, body, url };
 }
@@ -72,10 +70,7 @@ function setPlaceholder(element, fd) {
   }
 }
 const constraintsDef = Object.entries({
-  'email|text': [
-    ['Max', 'maxlength'],
-    ['Min', 'minlength']
-  ],
+  'email|text': [['Max', 'maxlength'], ['Min', 'minlength']], 
   'number|range|date': ['Max', 'Min', 'Step'],
   file: ['Accept', 'Multiple'],
   fieldset: ['Max', 'Min'],

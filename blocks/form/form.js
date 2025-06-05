@@ -69,8 +69,8 @@ function setPlaceholder(element, fd) {
     element.setAttribute('placeholder', fd.Placeholder);
   }
 }
-const constraintsDef = Object.entries({ 
-  'email|text': [['Max', 'maxlength'], ['Min', 'minlength']], 'number|range|date': ['Max', 'Min', 'Step'], file: ['Accept', 'Multiple'], fieldset: ['Max', 'Min'] 
+const constraintsDef = Object.entries({
+  'email|text': [['Max', 'maxlength'], ['Min', 'minlength']], 'number|range|date': ['Max', 'Min', 'Step'], file: ['Accept', 'Multiple'], fieldset: ['Max', 'Min'],
 }).flatMap(([types, constraintDef]) => types.split('|').map((type) => [type, constraintDef.map((cd) => (Array.isArray(cd) ? cd : [cd, cd]))]));
 const constraintsObject = Object.fromEntries(constraintsDef);
 

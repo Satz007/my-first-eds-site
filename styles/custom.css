@@ -2,7 +2,7 @@ h1 {
     font-size: 36px !important;
 }
 
-h2#our-menu {
+h2#our-menu, h2#about-catering {
     text-align: center;
 }
 

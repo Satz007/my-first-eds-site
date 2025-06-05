@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
  });
  
  function scrollToAnchor(eleId) {
-     const target = document.getElementById(eleId.split('#')[0]);
+     const target = document.getElementById(eleId.split('#')[1]);
      const targetPosition = target.getBoundingClientRect().top - 200;
      window.scrollTo({
          top: targetPosition,

@@ -1,4 +1,4 @@
-let anchorSelector = 'a[href^="#"]';
+let anchorSelector = 'a[href^="/#"]';
 let anchorList = document.querySelectorAll(anchorSelector);
 anchorList.forEach(link => {
     link.onclick = function (e) {

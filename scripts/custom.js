@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
  
  function scrollToAnchor(eleId) {
      const target = document.querySelector(eleId);
-     const targetPosition = target.scrollTop - 200;
+     const targetPosition = target.offsetTop - 200;
      window.scrollTo({
          top: targetPosition,
          behavior: 'smooth'

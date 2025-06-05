@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function(){
          let anchorSelector = 'a[href^="/#"]';
          let anchorList = document.querySelectorAll(anchorSelector);
-         anchorList.forEach(link => { 
+         anchorList.forEach(link => {
              link.onclick = function (e) {
                  e.preventDefault();
                  scrollToAnchor(this.hash)
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
  
  function scrollToAnchor(eleId) {
      const target = document.querySelector(eleId);
-     const targetPosition = target.getBoundingClientRect().top - 200;
+     const targetPosition = target.scrollTop - 200;
      window.scrollTo({
          top: targetPosition,
          behavior: 'smooth'

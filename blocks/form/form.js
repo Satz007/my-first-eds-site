@@ -1,4 +1,4 @@
-import {sampleRUM} from '../../scripts/aem.js';
+import { sampleRUM } from '../../scripts/aem.js';
 import decorateFieldset from './fieldset.js';
 
 function generateUnique() {
@@ -6,9 +6,7 @@ function generateUnique() {
 }
 
 function constructPayload(form) {
-  const payload = {
-    __id__: generateUnique()
-  };
+  const payload = { __id__: generateUnique() };
   [...form.elements].forEach((fe) => {
     if (fe.name) {
       if (fe.type === 'radio') {
@@ -20,19 +18,17 @@ function constructPayload(form) {
       }
     }
   });
-  return {
-    payload
-  };
+  return { payload };
 }
+
 async function submissionFailure(error, form) {
   alert(error); // TODO define error mechansim
   form.setAttribute('data-submitting', 'false');
   form.querySelector('button[type="submit"]').disabled = false;
 }
+
 async function prepareRequest(form) {
-  const {
-    payload
-  } = constructPayload(form);
+  const { payload } = constructPayload(form);
   const headers = {
     'Content-Type': 'application/json',
   };
@@ -40,19 +36,12 @@ async function prepareRequest(form) {
     data: payload
   });
   const url = form.dataset.action;
-  return {
-    headers,
-    body,
-    url
-  };
+  return { headers, body, url };
 }
+
 async function submitForm(form) {
   try {
-    const {
-      headers,
-      body,
-      url
-    } = await prepareRequest(form);
+    const { headers, body, url } = await prepareRequest(form);
     const response = await fetch(url, {
       method: 'POST',
       headers,
@@ -69,6 +58,7 @@ async function submitForm(form) {
     submissionFailure(error, form);
   }
 }
+
 async function handleSubmit(form) {
   if (form.getAttribute('data-submitting') !== 'true') {
     form.setAttribute('data-submitting', 'true');
@@ -89,8 +79,7 @@ const constraintsDef = Object.entries({
   'number|range|date': ['Max', 'Min', 'Step'],
   file: ['Accept', 'Multiple'],
   fieldset: ['Max', 'Min'],
-}).flatMap(([types, constraintDef]) => types.split('|')
-  .map((type) => [type, constraintDef.map((cd) => (Array.isArray(cd) ? cd : [cd, cd]))]));
+}).flatMap(([types, constraintDef]) => types.split('|').map((type) => [type, constraintDef.map((cd) => (Array.isArray(cd) ? cd : [cd, cd]))]));
 const constraintsObject = Object.fromEntries(constraintsDef);
 
 function setConstraints(element, fd) {
@@ -165,16 +154,19 @@ function createInput(fd) {
   setConstraints(input, fd);
   return input;
 }
+
 const withFieldWrapper = (element) => (fd) => {
   const wrapper = createFieldWrapper(fd);
   wrapper.append(element(fd));
   return wrapper;
 };
+
 const createTextArea = withFieldWrapper((fd) => {
   const input = document.createElement('textarea');
   setPlaceholder(input, fd);
   return input;
 });
+
 const createSelect = withFieldWrapper((fd) => {
   const select = document.createElement('select');
   if (fd.Placeholder) {
@@ -198,6 +190,7 @@ function createRadio(fd) {
   wrapper.insertAdjacentElement('afterbegin', createInput(fd));
   return wrapper;
 }
+
 const createOutput = withFieldWrapper((fd) => {
   const output = document.createElement('output');
   output.name = fd.Name;
@@ -248,6 +241,7 @@ function createPlainText(fd) {
   paragraph.textContent = fd.Label;
   return paragraph;
 }
+
 const getId = (function getId() {
   const ids = {};
   return (name) => {
@@ -257,6 +251,7 @@ const getId = (function getId() {
     return `${name}${idSuffix}`;
   };
 }());
+
 const fieldRenderers = {
   radio: createRadio,
   checkbox: createRadio,
@@ -288,6 +283,7 @@ function renderField(fd) {
 function decorateFormFields(form) {
   decorateFieldset(form);
 }
+
 async function fetchData(url) {
   const resp = await fetch(url);
   const json = await resp.json();
@@ -297,11 +293,13 @@ async function fetchData(url) {
     Value: fd.Value || '',
   }));
 }
+
 async function fetchForm(pathname) {
   // get the main form
   const jsonData = await fetchData(pathname);
   return jsonData;
 }
+
 async function createForm(formURL) {
   const {
     pathname
@@ -335,6 +333,7 @@ async function createForm(formURL) {
   decorateFormFields(form);
   return form;
 }
+
 export default async function decorate(block) {
   const formLink = block.querySelector('a[href$=".json"]');
   if (formLink) {

@@ -69,12 +69,7 @@ function setPlaceholder(element, fd) {
     element.setAttribute('placeholder', fd.Placeholder);
   }
 }
-const constraintsDef = Object.entries({
-  'email|text': [['Max', 'maxlength'], ['Min', 'minlength']], 
-  'number|range|date': ['Max', 'Min', 'Step'],
-  file: ['Accept', 'Multiple'],
-  fieldset: ['Max', 'Min'],
-}).flatMap(([types, constraintDef]) => types.split('|').map((type) => [type, constraintDef.map((cd) => (Array.isArray(cd) ? cd : [cd, cd]))]));
+const constraintsDef = Object.entries({ 'email|text': [['Max', 'maxlength'], ['Min', 'minlength']], 'number|range|date': ['Max', 'Min', 'Step'], file: ['Accept', 'Multiple'], fieldset: ['Max', 'Min'] }).flatMap(([types, constraintDef]) => types.split('|').map((type) => [type, constraintDef.map((cd) => (Array.isArray(cd) ? cd : [cd, cd]))]));
 const constraintsObject = Object.fromEntries(constraintsDef);
 
 function setConstraints(element, fd) {
@@ -296,9 +291,7 @@ async function fetchForm(pathname) {
 }
 
 async function createForm(formURL) {
-  const {
-    pathname
-  } = new URL(formURL);
+  const { pathname } = new URL(formURL);
   const data = await fetchForm(pathname);
   const form = document.createElement('form');
   data.forEach((fd) => {

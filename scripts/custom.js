@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function(){
          let anchorSelector = 'a[href^="/#"]';
          let anchorList = document.querySelectorAll(anchorSelector);
-         anchorList.forEach(link => {
+         anchorList.forEach(link => { 
              link.onclick = function (e) {
                  e.preventDefault();
                  scrollToAnchor(this.hash)

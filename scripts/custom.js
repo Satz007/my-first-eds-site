@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-   setTimeout(() => {
+   setTimeout(function(){
         let anchorSelector = 'a[href^="/#"]';
         let anchorList = document.querySelectorAll(anchorSelector);
         anchorList.forEach(link => {

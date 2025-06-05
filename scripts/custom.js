@@ -1,15 +1,17 @@
-let anchorSelector = 'a[href^="/#"]';
-let anchorList = document.querySelectorAll(anchorSelector);
-anchorList.forEach(link => {
-    link.onclick = function (e) {
-        e.preventDefault();
-        console.log(this.hash)
-        scrollToAnchor(this.hash)
-        // let destination = document.querySelector(this.hash);
-        // destination.scrollIntoView({
-        //     behavior: 'smooth'
-        // });
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    let anchorSelector = 'a[href^="/#"]';
+    let anchorList = document.querySelectorAll(anchorSelector);
+    anchorList.forEach(link => {
+        link.onclick = function (e) {
+            e.preventDefault();
+            console.log(this.hash)
+            scrollToAnchor(this.hash)
+            // let destination = document.querySelector(this.hash);
+            // destination.scrollIntoView({
+            //     behavior: 'smooth'
+            // });
+        }
+    });
 });
 
 function scrollToAnchor(eleId) {
